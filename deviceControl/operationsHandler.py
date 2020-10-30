@@ -25,8 +25,11 @@ def start(internalID, operation):
 def operationClassification(operation, operationID):
     if 'c8y_Restart' in str(operation):
         logger.info('Found c8y_Restart operation')
+        time.sleep(randint(0,2))
         API.operations.setOperationMode(operationID, 'EXECUTING')
-        API.operations.setOperationMode(operationID, 'SUCCESSFUL')
+        time.sleep(randint(0,5))
+        choice=random.choice(['SUCCESSFUL','FAILED'])
+        API.operations.setOperationMode(operationID, choice)
     elif 'c8y_Configuration' in str(operation):
         logger.info('Found c8y_Configuration operation')
         try:
@@ -54,7 +57,9 @@ def operationClassification(operation, operationID):
     elif 'c8y_Command' in str(operation):
         logger.info('Found c8y_Command operation')
         API.operations.setOperationMode(operationID, 'EXECUTING')
-        API.operations.setOperationMode(operationID, 'SUCCESSFUL')
+        time.sleep(randint(0,5))
+        choice=random.choice(['SUCCESSFUL','FAILED'])
+        API.operations.setOperationMode(operationID, choice)
     elif 'c8y_RemoteAccessConnect' in str(operation):
         logger.info('Found c8y_RemoteAccessConnect operation')
         API.operations.setOperationMode(operationID, 'EXECUTING')
