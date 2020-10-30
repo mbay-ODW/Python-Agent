@@ -11,7 +11,7 @@ logger.info('Logger for settings was initialised')
 
 def basics():
     logger.info('Basic function was called')
-    configInit = configparser.ConfigParser()
+    configInit = configparser.ConfigParser(interpolation=None)
     configInit.read('./config/config.ini')
     basics = {}
     basics['tenantInstance'] = configInit['C8Y']['tenantInstance']
@@ -26,7 +26,7 @@ def credentials():
     logger.info('Credentials function was called, checking if file exists')
     if path.exists('./config/credentials.key'):
         logger.info('Credential key file exists')
-        configCredentials = configparser.ConfigParser()
+        configCredentials = configparser.ConfigParser(interpolation=None)
         configCredentials.read('./config/credentials.key')
         logger.info('Key file was read')
         credentials = {}

@@ -16,7 +16,7 @@ class __Authentication(object):
         logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         self.logger.info('Logger for authentication was initialised')
         if path.exists('./config/credentials.key'):
-            self.configCredentials = configparser.ConfigParser()
+            self.configCredentials = configparser.ConfigParser(interpolation=None)
             self.configCredentials.read('./config/credentials.key')
             self.logger.info('Key file was read')
             self.__c8yUser = self.configCredentials['Credentials']['Username']
