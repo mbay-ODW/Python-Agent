@@ -3,7 +3,6 @@ from os import path
 import logging
 import os
 import API.inventory
-import API.epl
 import API.authentication as auth
 
 logger = logging.getLogger('Settings')
@@ -39,16 +38,6 @@ def credentials():
         return credentials
     else:
         print("No file")
-
-def mqtt():
-    configInit = configparser.ConfigParser()
-    configInit.read('./config/config.ini')
-    mqtt = {}
-    mqtt['prefix'] = configInit['MQTT']['prefix']
-    mqtt['prefixSignaltype'] = configInit['MQTT']['prefixSignaltype']
-    mqtt['broker'] = configInit['MQTT']['broker']
-    mqtt['port'] = configInit['MQTT']['port']
-    return mqtt
 
 def device():
     device = {}

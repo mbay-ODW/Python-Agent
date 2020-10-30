@@ -11,7 +11,7 @@ import deviceControl.configurationUpdate
 import API.operations
 from random import randint
 import time
-from random import choice
+import random
 
 logger = logging.getLogger('OperationHandler')
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -40,13 +40,17 @@ def operationClassification(operation, operationID):
         time.sleep(randint(0,2))
         API.operations.setOperationMode(operationID, 'EXECUTING')
         time.sleep(randint(0,5))
-        API.operations.setOperationMode(operationID, choice(['SUCCESSFUL','FAILED']))
+        choice=random.choice(['SUCCESSFUL','FAILED'])
+        logger.debug('Choice is %s'%(str(choice)))
+        API.operations.setOperationMode(operationID, choice)
     elif 'c8y_Firmware' in str(operation):
         logger.info('Found c8y_Firmware operation')
         time.sleep(randint(0,2))
         API.operations.setOperationMode(operationID, 'EXECUTING')
         time.sleep(randint(0,5))
-        API.operations.setOperationMode(operationID, choice(['SUCCESSFUL','FAILED']))
+        choice=random.choice(['SUCCESSFUL','FAILED'])
+        logger.debug('Choice is %s'%(str(choice)))
+        API.operations.setOperationMode(operationID, choice)
     elif 'c8y_Command' in str(operation):
         logger.info('Found c8y_Command operation')
         API.operations.setOperationMode(operationID, 'EXECUTING')

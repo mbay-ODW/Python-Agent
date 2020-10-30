@@ -47,7 +47,7 @@ def getDeviceCredentials(id):
 def createEdgeDevice(externalID):
     logger.info('Checking for managed object in c8y with external ID %s' + externalID)
     url = "https://%s/inventory/managedObjects"%(auth.get().tenant)
-    payload = "{\n    \"name\": \"Gateway\",\n    \"c8y_IsDevice\": {},\n    \"c8y_SupportedOperations\": [\n        \"c8y_Restart\",\n        \"c8y_Configuration\",\n        \"c8y_Command\",\n        \"c8y_Firmware\", \"c8y_RemoteAccessConnect\"],\n    \"com_cumulocity_model_Agent\": {}, \n    \"c8y_Configuration\": {\r\n        \"config\":\"c8y.raw.apama.topic=raw/#;\\nc8y.signaltype.apama.topic=signaltype/#;\\nc8y.aggregated.apama.topic=aggregated/#;\\nc8y.operations.check.interval=5;\\nc8y.docker.status.update=10;\\nc8y.logging.level=DEBUG;\"}\n}"
+    payload = "{\n    \"name\": \"Gateway\",\n    \"c8y_IsDevice\": {},\n    \"c8y_SupportedOperations\": [\n        \"c8y_Restart\",\n        \"c8y_Software\",\n        \"c8y_Configuration\",\n        \"c8y_Command\",\n        \"c8y_Firmware\", \"c8y_RemoteAccessConnect\"],\n    \"com_cumulocity_model_Agent\": {}, \n    \"c8y_Configuration\": {\r\n        \"config\":\"c8y.raw.apama.topic=raw/#;\\nc8y.signaltype.apama.topic=signaltype/#;\\nc8y.aggregated.apama.topic=aggregated/#;\\nc8y.operations.check.interval=5;\\nc8y.docker.status.update=10;\\nc8y.logging.level=DEBUG;\"}\n}"
     response = requests.request("POST", url, headers=auth.get().headers, data = payload)
     logger.debug('Requesting the following url: ' + str(url))
     logger.debug('Response from request: ' + str(response.text))
