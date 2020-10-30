@@ -3,7 +3,7 @@
 "com_cumulocity_model_Agent": {},
     "c8y_IsDevice": {},
     "c8y_Configuration": {
-        "config": "c8y.raw.apama.topic=raw/#;\nc8y.signaltype.apama.topic=signaltype/#;\nc8y.aggregated.apama.topic=aggregated/#;\nc8y.operations.check.interval=5;\nc8y.docker.status.update=10;\nc8y.logging.level=DEBUG;"
+        "config": "c8y.operations.check.interval=5;\nc8y.device.status.update=10;\nc8y.logging.level=DEBUG;"
     },
     "c8y_SupportedOperations": [
         "c8y_Restart",
