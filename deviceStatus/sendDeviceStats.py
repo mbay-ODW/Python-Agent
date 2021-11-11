@@ -21,11 +21,15 @@ logger = logging.getLogger('Device Status updater')
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger.info('Logger for sending Docker Status to Platform')
 
+
+def getUTC():
+    return  datetime.datetime.strptime(str(datetime.datetime.utcnow()), '%Y-%m-%d %H:%M:%S.%f').isoformat() +"+00:00"
+
 def getMemoryStats():
     payload = {}
     payload['source'] = {"id": str(auth.get().internalID)}
     payload['type'] = "c8y_ThinEdge_Device_Stats"
-    payload['time'] = datetime.datetime.strptime(str(datetime.datetime.now()), '%Y-%m-%d %H:%M:%S.%f').isoformat() +"+00:00"
+    payload['time'] = getUTC()
     memory = {}
     memory['free'] = {"value": psutil.virtual_memory().free}
     memory['used'] = {"value": psutil.virtual_memory().used}
@@ -38,7 +42,7 @@ def getCPUStats():
     payload = {}
     payload['source'] = {"id": str(auth.get().internalID)}
     payload['type'] = "c8y_ThinEdge_Device_Stats"
-    payload['time'] = datetime.datetime.strptime(str(datetime.datetime.now()), '%Y-%m-%d %H:%M:%S.%f').isoformat() +"+00:00"
+    payload['time'] = getUTC()
     cpu = {}
     cpu['load'] = {'value': psutil.cpu_percent(0)}
     payload['CPU'] = cpu
@@ -48,7 +52,7 @@ def getDiskStats():
     payload = {}
     payload['source'] = {"id": str(auth.get().internalID)}
     payload['type'] = "c8y_ThinEdge_Device_Stats"
-    payload['time'] = datetime.datetime.strptime(str(datetime.datetime.now()), '%Y-%m-%d %H:%M:%S.%f').isoformat() +"+00:00"
+    payload['time'] = getUTC()
     disk = {}
     disk['total'] = {'value': psutil.disk_usage('/').total}
     disk['used'] = {'value': psutil.disk_usage('/').used}
